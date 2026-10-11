@@ -6,11 +6,12 @@ A small Python desktop app that uses Claude to label customer reviews with a sen
 
 <img width="1315" height="762" alt="Screenshot 2026-10-12 035727" src="https://github.com/user-attachments/assets/f4afb5b9-3b67-4045-a4bf-acc886c6c1a3" />
 *The app with the included sample reviews loaded, ready for analysis. Add your own API key to fill the Sentiment, Category and Summary columns.*
+
 ## Features
 
 - Load a CSV of reviews or paste them in (one per line)
 - Claude returns **sentiment** (positive / neutral / negative), **category** (shipping, product quality, pricing, account/service, other) and a **one-sentence summary** for every row
-- Results appear in a table with color coded rows with color coded rows
+- Results appear in a table with color coded rows
 - Runs API calls in a background thread, with a progress bar, so the window never freezes
 - Strict JSON replies, validated before use; bad JSON, API errors and empty rows are handled per row and never crash the app
 - Export the annotated results to a new CSV (opens cleanly in Excel)
