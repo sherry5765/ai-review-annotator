@@ -2,6 +2,10 @@
 
 A small Python desktop app that uses Claude to label customer reviews with a sentiment, a category and a one-sentence summary, then exports the results to CSV.
 
+**Status:** Working prototype. The interface, CSV loading, JSON validation, and error handling are built and tested with the included `sample_reviews.csv`. The Claude API is pay per use and I haven't run a full live batch yet, so you'll need your own Anthropic API key to see real results.
+
+<img width="1315" height="762" alt="Screenshot 2026-10-12 035727" src="https://github.com/user-attachments/assets/f4afb5b9-3b67-4045-a4bf-acc886c6c1a3" />
+*The app with the included sample reviews loaded, ready for analysis. Add your own API key to fill the Sentiment, Category and Summary columns.*
 ## Features
 
 - Load a CSV of reviews or paste them in (one per line)
@@ -59,6 +63,7 @@ Click **Load CSV** and pick `sample_reviews.csv` (or **Paste Reviews**), then **
 One review per row. If a column is named `review`, `text`, `message`, `comment`, `feedback` or `body`, that column is used; otherwise the first column is used. Blank rows are skipped.
 
 ## What I learned
+<img width="1315" height="762" alt="Screenshot 2026-10-12 035727" src="https://github.com/user-attachments/assets/111212de-7346-40b6-860f-4c976d78cded" />
 
 - I built this with Claude as a coding assistant, then tested and reviewed the code myself so I can explain how each part works.
 - Model replies can't be trusted blindly. I ask Claude for strict JSON, then check the sentiment, category, and summary before showing them, so one bad reply doesn't break the app.
