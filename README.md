@@ -6,7 +6,7 @@ A small Python desktop app that uses Claude to label customer reviews with a sen
 
 - Load a CSV of reviews or paste them in (one per line)
 - Claude returns **sentiment** (positive / neutral / negative), **category** (shipping, product quality, pricing, account/service, other) and a **one-sentence summary** for every row
-- Results appear in a sortable-looking table with color-coded rows
+- Results appear in a table with color coded rows with color coded rows
 - Runs API calls in a background thread, with a progress bar, so the window never freezes
 - Strict JSON replies, validated before use; bad JSON, API errors and empty rows are handled per row and never crash the app
 - Export the annotated results to a new CSV (opens cleanly in Excel)
@@ -60,9 +60,8 @@ One review per row. If a column is named `review`, `text`, `message`, `comment`,
 
 ## What I learned
 
-_Edit this section before publishing. Ideas:_
-
-- How to call the Anthropic API from Python and ask for strict JSON
-- Why model output must be validated before it is trusted
-- Keeping a Tkinter window responsive with a worker thread and a queue
-- Handling failures per row so one bad response doesn't stop the batch
+- I built this with Claude as a coding assistant, then tested and reviewed the code myself so I can explain how each part works.
+- Model replies can't be trusted blindly. I ask Claude for strict JSON, then check the sentiment, category, and summary before showing them, so one bad reply doesn't break the app.
+- API calls run in a background thread and send updates back through a queue. That keeps the window responsive while a batch is running.
+- Each review is handled separately, so if one call fails, the app marks that row as an error and continues with the rest.
+- Wrapping each review in tags and telling the model to treat it as data helps stop a review's text from acting like instructions.
